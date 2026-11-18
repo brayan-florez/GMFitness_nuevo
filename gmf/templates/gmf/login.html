@@ -1,0 +1,5 @@
+{% extends 'gmf/base.html' %}
+{% block title %}Iniciar sesión · GMFitness{% endblock %}
+{% block content %}<section class="auth-card"><a class="brand auth-brand" href="{% url 'login' %}"><span class="brand-mark">GM</span><span>GM<span class="accent">Fitness</span></span></a><div class="eyebrow">BIENVENIDO DE NUEVO</div><h1>Inicia sesión</h1><p class="muted">Ingresa a tu espacio de entrenamiento.</p>
+<form method="post" class="stack-form">{% csrf_token %}{{ form.non_field_errors }}{% for field in form %}<label>{{ field.label }}{{ field }}{% if field.errors %}<small class="error">{{ field.errors|join:', ' }}</small>{% endif %}</label>{% endfor %}<button class="button button-primary full" type="submit">Entrar a mi cuenta</button></form>
+<p class="auth-footer">¿Aún no tienes cuenta? <a href="{% url 'registro' %}">Regístrate aquí</a></p></section>{% endblock %}

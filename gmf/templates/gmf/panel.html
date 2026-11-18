@@ -1,0 +1,7 @@
+{% extends 'gmf/base.html' %}
+{% block title %}Panel · GMFitness{% endblock %}
+{% block content %}<div class="page-heading"><div><div class="eyebrow">TU ESPACIO GMFITNESS</div><h1>Hola, {{ request.usuario.nombre }}</h1><p class="muted">Aquí tienes un resumen de tu actividad.</p></div><a class="button button-primary" href="{% url 'perfil' %}">Ver mi perfil</a></div>
+{% if counts %}<section class="stats-grid">{% for name, value in counts.items %}<article class="stat-card"><span>{{ name|capfirst }}</span><strong>{{ value }}</strong><small>Registros en tu cuenta</small></article>{% endfor %}</section>{% endif %}
+<section class="section-block"><div class="section-heading"><div><div class="eyebrow">ACCESOS</div><h2>Gestiona tu gimnasio</h2></div></div><div class="module-grid">{% for section in secciones %}<a class="module-card" href="{% url 'catalogo' section.key %}"><span class="module-icon">✳</span><span><strong>{{ section.title }}</strong><small>Ver y gestionar</small></span><b>→</b></a>{% empty %}<p>No hay módulos habilitados para este perfil.</p>{% endfor %}</div></section>
+{% if not request.usuario.cliente and request.usuario.rol == 'ADMINISTRADOR' %}<section class="section-block"><div class="section-heading"><div><div class="eyebrow">ADMINISTRACIÓN</div><h2>Configuración inicial</h2></div></div><p class="muted">Crea sedes, cuentas de equipo, planes y catálogos para habilitar el trabajo del resto de perfiles.</p></section>{% endif %}
+{% endblock %}

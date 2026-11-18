@@ -1,0 +1,4 @@
+{% extends 'gmf/base.html' %}
+{% block title %}Crear cuenta · GMFitness{% endblock %}
+{% block content %}<section class="auth-card auth-card-wide"><a class="brand auth-brand" href="{% url 'login' %}"><span class="brand-mark">GM</span><span>GM<span class="accent">Fitness</span></span></a><div class="eyebrow">EMPIEZA HOY</div><h1>Crea tu cuenta</h1><p class="muted">Regístrate como cliente para gestionar tus objetivos y tu entrenamiento.</p>
+<form method="post" class="form-grid">{% csrf_token %}{% for field in form %}<label>{{ field.label }}{{ field }}{% if field.errors %}<small class="error">{{ field.errors|join:', ' }}</small>{% endif %}</label>{% endfor %}<div class="form-actions"><button class="button button-primary" type="submit">Crear cuenta</button><a href="{% url 'login' %}" class="button button-quiet">Ya tengo cuenta</a></div></form></section>{% endblock %}
